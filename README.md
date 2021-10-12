@@ -22,7 +22,7 @@ If applicable, use this area to tell us what stretch goals you attempted. What w
 could have done better? If you didn't attempt any of the stretch goals, feel free to let us know why.
 
 ### Instructions to run assignment locally
-Take a clone of this repo and go inside the clone directory:
+Take a clone of this repo and go inside the cloned directory:
 
 ```bash
 git clone https://github.com/ankur512512/think.git
@@ -36,8 +36,37 @@ Go to development folder and you will see all the required files there, then use
 $ cd development
 $ docker-compose up -d --build
 ```
+Give it some time, it will automatically build and run your required images. Once ready, go to `https://localhost:3000/`.
+You will get a certificate warning because we are using self-signed certificate. Ignore that, click on Advanced and proceed to the application and you will see something like this:
+
+![image](https://user-images.githubusercontent.com/12583640/136947125-7f125ef7-619c-42e5-9f30-9f5b5337582b.png)
+
+Hit it a few more times to generate some logs that we can see in `Kibana`.
+
+Now go to this link:
+
+http://localhost:5601/app/management/kibana/indexPatterns
+
+And you will see something like this:
+
+![image](https://user-images.githubusercontent.com/12583640/136947634-c3e29fb5-2026-4efa-a459-789b2f8f045b.png)
+
+Click on `Create Index Pattern` and then in the index pattern name enter `fluentd-*` and you will see a confirmation message below that it matches one source. Something like this:
+
+![image](https://user-images.githubusercontent.com/12583640/136948028-d0e727b5-4e01-457a-9443-d274937557ee.png)
+
+In next step, select `@timestamp` for Time field and click on `Create index pattern`. Our index pattern is created now.
+
+Next, from the top-left menu, click on `Discover` under `Analytics` panel as below:
 
 
+![image](https://user-images.githubusercontent.com/12583640/136948777-19a48836-ee3a-4b37-882f-4cfe2436ae06.png)
+
+You will see something like this:
+
+![image](https://user-images.githubusercontent.com/12583640/136948943-b7a430cf-0538-4d51-b295-30b7e471489d.png)
+
+As you can see, our logs have been sent to the `Kibana` dashboard and you can easily go through them in a Chart form or in JSON form to analyze any patterns or errors.
 
 #### Production
 
