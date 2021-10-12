@@ -30,7 +30,12 @@ cd think
 ```
 #### Development
 
-Go to development folder and you will see all the required files there.
+Go to development folder and you will see all the required files there, then use docker-compose command to get everything up and running in single shot:
+
+```bash
+$ cd development
+$ docker-compose up -d --build
+```
 
 
 
