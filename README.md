@@ -44,11 +44,12 @@ To run the application locally in one shot which will also create and use a `pos
 docker-compose up -d --build
 ```
 
-This will start your application on `https://localhost:3000/`. Please note that since this is using `Production` mode, don't try to hit the default url i.e. `https://localhost:3000` as it will give 404 error because it is not having any static pages.
+This will start your application on localhost. Please note that since this is using `Production` mode, don't try to hit the default url i.e. `https://localhost:3000` as it will give 404 error because it is not having any static pages.
 
 Use a tool like `postman` to hit the api for creating user but first make sure ssl verification is off as shown below:
 
 
+![ssl_verify_off](https://user-images.githubusercontent.com/12583640/136906128-f57e548c-cb2e-4d9d-ae8c-0763cf4d5100.jpg)
 
 
 Now send a `POST` request to this url `https://localhost:3000/users/create?username=testuser&password=mypassword` and you will result like this:
