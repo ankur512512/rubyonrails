@@ -135,7 +135,42 @@ So this is the production ready image which we can use and modify our required D
 
 ***Future Scope:*** We can also make the .env file as mountable volume so as to keep the secrets always up-to-date without redoing the deployment. However, we might still need to restart the application if we make any change at runtime to reflect the changes in environment variables.
 
+#### Architecture:
+
+![image](https://user-images.githubusercontent.com/12583640/136979859-7630f8fc-2443-4164-a6bb-bcd55a9b9238.png)
+
+
+Above is the architectural diagram that I have created for my application.
+The single point of failure would be:
+
+1. From Elastic Load Balancer to Application : If our application has increased load or fails for some reason then it might result in failure for client. To rectify that, we can spin up two or more instances of our containerized application for high availability in either active-passive or active-active mode as per our requirements.
+2. From Application to DB: While transferring data between Application and DB, there are chances that DB server might go down. To fix this, we should use multiple replicas of DB server, either in master slave mode or some database like mariadb-galera with multiple masters so that application can write to any of the replica.
+
+#### Stretch Goals:
+
+##### Multitenancy:
+
+To handle the multitenancy requirements, we have multiple approaches that we can use:
+
+1. Row-level: You put a tenant_id column into every DB table and filter by tenant_id in every query. Advantage for using this approach is that it's fast, easy to implement and involves no additional cost as such. Drawback would be that it can lead to data leakage between different tenants if you forget to include the tenant_id in a query.
+2. Schema-level: For every tenant you create a separate namespaced set of tables inside one database. Easily achievable with PostgreSQL schemas. It is slower in comparison with row-level approach but chances of data leakage are less here.
+3. Database level: You setup a whole new DB for every tenant. It is slowest among all and you get a lot of databases which might result in high operational cost.
+
+In our case, I would probably choose between row-level and schema-level.
+
+##### Rollout Plan:
+
+1. We need to get our Cloud Infrastructure ready which will host the application as shown in the diagram.
+2. We need to create Elastic Load Balancer or nginx which can route the requests from client to our Application container.
+3. We have to spin up a Database server which can be accessed by our Application container.
+4. We also need to create a CSR for the required SSL certificates that will be used by our application for HTTPS connections. After getting them signed we need to put them in the correct path with correct names as documented already so that they can be mounted inside the application container.
+5. After doing these steps we can spin up our dockerized application using the steps mentioned already. 
+
+
 ### What did you not include in your solution that you want us to know about?
-Were you short on time and not able to include something that you want us to know
-about? Please list it here so that we know that you considered it.
+I did include the `prometheus` part earlier and I was able to pull metrics as well in the dashboard but due to shortage of time I couldn't get my head around how to document it in a nice fancy way to present. I have intentionally commented out the code in the docker-compose file so if need can be used again.
+
+Also, I could have implemented a reverse proxy solution using nginx but again due to shortage of time and as instructed I chose to go with the fluentd feature as I had to choose any one of the listed features. But if given more time or needed in future I can do that, I have a mental description of that in my mind already. 
+
 ### Other information about your submission that you feel it's important that we know if applicable.
+This was my first time working on Ruby on Rails and so please forgive my novice mistakes if any.
