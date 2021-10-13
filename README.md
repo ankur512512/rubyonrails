@@ -117,7 +117,7 @@ In case you want to use this application Dockerfile only, without `docker-compos
 1. First of all, while being inside the `production` directory, build the docker image using below command:
 
 ```bash
-docker build -t prod:latest .
+$ docker build -t prod:latest .
 ```
 2. It will take some time to build the image and after it's done, edit the `.env` file to enter your own database related details. For example, if your database username is 'postgres', password is 'postgres123' and host ip is '172.17.0.2' with port '5432' then your `DATABASE_URL` will look like below:
 ```bash
@@ -178,9 +178,12 @@ In our case, I would probably choose between row-level and schema-level.
 
 
 ### What did you not include in your solution that you want us to know about?
-I did include the `prometheus` part earlier and I was able to pull metrics as well in the dashboard but due to shortage of time I couldn't get my head around how to document it in a nice fancy way to present. I have intentionally commented out the code in the docker-compose file so if need can be used again.
+I did include the `prometheus` part earlier and I was able to pull metrics as well in the dashboard but due to shortage of time I couldn't get my head around how to document it in a nice fancy way to present. I have intentionally commented out the code in the docker-compose file, so if needed, can be used again.
 
-Also, I could have implemented a reverse proxy solution using nginx but again due to shortage of time and as instructed I chose to go with the fluentd feature as I had to choose any one of the listed features. But if given more time or needed in future I can do that, I have a mental description of that in my mind already. 
+Also, I could have implemented a reverse proxy solution using nginx but again due to shortage of time and as instructed in the assignment I chose to go with only one feature which is `Logging` feature using fluentd. But if given more time or needed in future I can do reverse proxy as well I guess, atleast I have an idea of how I am going to do that in my mind already. :) 
 
 ### Other information about your submission that you feel it's important that we know if applicable.
-This was my first time working on Ruby on Rails and so please forgive my novice mistakes if any.
+This was my first time working on Ruby on Rails, so please forgive my novice mistakes, if any.
+
+Cheers !!
+Ankur
