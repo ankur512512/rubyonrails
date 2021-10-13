@@ -75,7 +75,7 @@ $ docker-compose down
 
 #### Production
 
-Go to production folder and you will see all the required files.
+Come back to the home directory of cloned git repository and go to production folder to see all the required files.
 ```bash
 cd production
 ```
