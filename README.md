@@ -106,18 +106,22 @@ Now send a `POST` request to this url `https://localhost:3000/users/create?usern
 
 ![create_user](https://user-images.githubusercontent.com/12583640/136908136-3e47223b-e84c-49bb-9cbd-3714b534a670.jpg)
 
-As you can see a user is created successfully, so everything is working fine.
+As you can see a user is created successfully, so everything is working fine. Again, once satisfied, shutdown your `docker-compose` stack using below command:
+
+```bash
+$ docker-compose down
+```
 
 In case you want to use this application Dockerfile only, without `docker-compose` (for ex: you already have your own postgresql database server running), follow these steps:
 
-1. First of all, build the docker image using below command:
+1. First of all, while being inside the `production` directory, build the docker image using below command:
 
 ```bash
-docker build -t test:latest .
+docker build -t prod:latest .
 ```
-2. It will take some time to build the image and after it's done, edit the `.env` file to enter your own database related details. For example, if your database username is 'postgres', password is 'postgres@123' and host ip is '172.17.0.2' with port '5432' then your `DATABASE_URL` will look like below:
+2. It will take some time to build the image and after it's done, edit the `.env` file to enter your own database related details. For example, if your database username is 'postgres', password is 'postgres123' and host ip is '172.17.0.2' with port '5432' then your `DATABASE_URL` will look like below:
 ```bash
-DATABASE_URL=postgresql://postgres:postgres@123@172.17.0.2:5432
+DATABASE_URL=postgresql://postgres:postgres123@172.17.0.2:5432
 ```
 Keep the other two variables as it is as you don't need to change them.
 
