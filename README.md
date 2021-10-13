@@ -2,24 +2,22 @@
 *Please do not supply your name or email address in this document. We're doing our best to remain unbiased.*
 
 ### Date
-The date you're submitting this.
+October 13th, 2021.
 
 ### Location of deployed application
 Need to deploy locally.
 
 ### Time spent
-7 hours
+7-8 hours
 
 ### Assumptions made
 I am assuming we are free to make some changes if needed in the Gemfile, as I had to upgrade puma version to enable ssl.
 
 ### Shortcuts/Compromises made
-If applicable. Did you do something that you feel could have been done better in a real-world application? Please
-let us know.
+In a real world environment I would have used the `Dockerfile` to create an image and push to our internal container repo. Then use that image in a `Kubernetes Deployment` with atleast 2 replicas to support high availability. Then create a `ClusterIP` service to expose it internal to the cluster. And then to access it via the outside world, create an ingress controller like nginx to route the requests to this service. 
 
 ### Stretch goals attempted
-If applicable, use this area to tell us what stretch goals you attempted. What went well? What do you wish you
-could have done better? If you didn't attempt any of the stretch goals, feel free to let us know why.
+Documented this in the later section.
 
 ### Instructions to run assignment locally
 Take a clone of this repo and go inside the cloned directory:
