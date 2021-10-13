@@ -23,8 +23,8 @@ Documented this in the later section.
 Take a clone of this repo and go inside the cloned directory:
 
 ```bash
-git clone https://github.com/ankur512512/think.git
-cd think
+$ git clone https://github.com/ankur512512/think.git
+$ cd think
 ```
 #### Development
 
@@ -77,12 +77,12 @@ $ docker-compose down
 
 Come back to the home directory of cloned git repository and go to production folder to see all the required files.
 ```bash
-cd production
+$ cd production
 ```
 For production, I am only using rails and postgresql without any extra features.
 To run the application locally in one shot which will also create and use a `postgresql` database on your localhost, use the `docker-compose` file and run it using below command.
 ```bash
-docker-compose up -d --build
+$ docker-compose up -d --build
 ```
 
 This will start your application on localhost. Please note that since this is using `Production` mode, don't try to hit the default url i.e. `https://localhost:3000` as it will give 404 error because it is not having any static pages.
@@ -129,19 +129,19 @@ Keep the other two variables as it is as you don't need to change them.
 
 After doing that run the docker image using below command, note that we are mounting the volume for certs and passing the .env file as environment variable to inject values for required environment variables.
 ```bash
-docker run -d -p3000:3000 -v /home/agarg/tmp/think/production/volumes/certs:/myapp/config/certs --env-file .env --name ruby test:latest
+$ docker run -d -p3000:3000 -v /home/agarg/tmp/think/production/volumes/certs:/myapp/config/certs --env-file .env --name ruby prod:latest
 ```
 Give it around 20-30 seconds to get ready and after that verify if it's working fine, again, using a simple curl command from the same host:
 
 ```bash
 $ curl -X POST -k "https://localhost:3000/users/create?username=testuser&password=testingpassword"
 ```
-You will get response like this:
+You will get a response similar to this:
 ```bash
 {"data":{"id":"1","type":"user","attributes":{"api_key":"9XoQuT7NmRRjMHFbsPgvmpxh"}},"jsonapi":{"version":"1.0"}}
 ```
 
-So this is the production ready image which we can use and modify our required DB details or certificates whenever we need on our host itself. Whenever we have to do any change in the DB details or certificates we just need to re-do the deployment (which can be easily done in a rolling fashion using kubernetes etc.) without needing to rebuild the image.
+So this is the production ready image which we can use for ruby. We can modify the DB details as per the DB connection details and we can also use our own trusted CA certificates. Whenever we have to do any change in the DB details or certificates we just need to re-do the deployment (which can be easily done in a rolling fashion using kubernetes etc.) without needing to rebuild the image.
 
 ***Future Scope:*** We can also make the .env file as mountable volume so as to keep the secrets always up-to-date without redoing the deployment. However, we might still need to restart the application if we make any change at runtime to reflect the changes in environment variables.
 
