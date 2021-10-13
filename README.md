@@ -67,12 +67,19 @@ You will see something like this:
 
 As you can see, our logs have been sent to the `Kibana` dashboard and you can easily go through them in a Chart form or in JSON form to analyze any patterns or errors.
 
+Once you are done with the testing, remember to shutdown the docker-compose stack using below command from the same directory:
+
+```bash
+$ docker-compose down
+```
+
 #### Production
 
 Go to production folder and you will see all the required files.
 ```bash
 cd production
 ```
+For production, I am only using rails and postgresql without any extra features.
 To run the application locally in one shot which will also create and use a `postgresql` database on your localhost, use the `docker-compose` file and run it using below command.
 ```bash
 docker-compose up -d --build
