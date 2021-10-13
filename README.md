@@ -108,7 +108,7 @@ Now send a `POST` request to this url `https://localhost:3000/users/create?usern
 
 As you can see a user is created successfully, so everything is working fine.
 
-In case you want to use this application Dockerfile only, without `docker-compose` (for ex: you already have your own postgres database server running), follow these steps:
+In case you want to use this application Dockerfile only, without `docker-compose` (for ex: you already have your own postgresql database server running), follow these steps:
 
 1. First of all, build the docker image using below command:
 
