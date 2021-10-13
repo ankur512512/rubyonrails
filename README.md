@@ -53,7 +53,7 @@ Click on `Create Index Pattern` and then in the index pattern name enter `fluent
 
 ![image](https://user-images.githubusercontent.com/12583640/136948028-d0e727b5-4e01-457a-9443-d274937557ee.png)
 
-In next step, select `@timestamp` for Time field and click on `Create index pattern`. Our index pattern is created now.
+Click on `Next step`, and in the next screen select `@timestamp` for Time field and click on `Create index pattern`. Our index pattern is created now.
 
 Next, from the top-left menu, click on `Discover` under `Analytics` panel as below:
 
