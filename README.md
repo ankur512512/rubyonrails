@@ -28,6 +28,7 @@ cd think
 ```
 #### Development
 
+For the Development purposes, I have enhanced the `docker-compose` stack further by using the `Logging` feature which will utilise `fluentd` to forward logs to `kibana`.
 Go to development folder and you will see all the required files there, then use docker-compose command to get everything up and running in single shot:
 
 ```bash
